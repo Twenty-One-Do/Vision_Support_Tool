@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfFolderSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FolderSetting>
+    <FolderName>R측 카메라</FolderName>
+    <Memo>ㅇㅇㅇ</Memo>
+    <FolderPath>C:\test\Image\Cam_R</FolderPath>
+    <TargetExtCsv />
+    <StartThresholdGB>6</StartThresholdGB>
+    <ImageTTL_Days>1</ImageTTL_Days>
+    <ScanInterval_Min>11</ScanInterval_Min>
+  </FolderSetting>
+  <FolderSetting>
+    <FolderName>L측 카메라</FolderName>
+    <Memo>ㅇㅇㅇ</Memo>
+    <FolderPath>C:\test\Image\Cam_L</FolderPath>
+    <TargetExtCsv />
+    <StartThresholdGB>0</StartThresholdGB>
+    <ImageTTL_Days>1</ImageTTL_Days>
+    <ScanInterval_Min>11</ScanInterval_Min>
+  </FolderSetting>
+</ArrayOfFolderSetting>
