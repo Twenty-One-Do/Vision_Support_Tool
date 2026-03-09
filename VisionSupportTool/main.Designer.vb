@@ -78,26 +78,23 @@ Partial Class main
         Me.Btn_RunAllNow = New System.Windows.Forms.Button()
         Me.Pan_FTPMg = New System.Windows.Forms.Panel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CB_DriveLetter = New System.Windows.Forms.ComboBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Pan_Menu_Frame.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pan_Contents_Frame.SuspendLayout()
-        Me.Pan_FileMg.SuspendLayout()
-        Me.Panel8.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        CType(Me.NUD_ScanStartVol, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NUD_ScanPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NUD_ImageLife, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel4.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.SuspendLayout()
+        Me.Pan_Menu_Frame.SuspendLayout
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.Pan_Contents_Frame.SuspendLayout
+        Me.Pan_FileMg.SuspendLayout
+        Me.Panel8.SuspendLayout
+        Me.Panel6.SuspendLayout
+        Me.Panel5.SuspendLayout
+        CType(Me.NUD_ScanStartVol,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NUD_ScanPeriod,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NUD_ImageLife,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.Panel4.SuspendLayout
+        Me.Panel1.SuspendLayout
+        Me.SuspendLayout
         '
         'Pan_Menu_Frame
         '
-        Me.Pan_Menu_Frame.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer))
+        Me.Pan_Menu_Frame.BackColor = System.Drawing.Color.FromArgb(CType(CType(227,Byte),Integer), CType(CType(28,Byte),Integer), CType(CType(28,Byte),Integer))
         Me.Pan_Menu_Frame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pan_Menu_Frame.Controls.Add(Me.Panel3)
         Me.Pan_Menu_Frame.Controls.Add(Me.Panel2)
@@ -131,7 +128,7 @@ Partial Class main
         Me.PictureBox1.Size = New System.Drawing.Size(346, 52)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.TabStop = false
         '
         'Pan_Contents_Frame
         '
@@ -189,8 +186,8 @@ Partial Class main
         '
         'Label22
         '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label22.AutoSize = true
+        Me.Label22.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label22.Location = New System.Drawing.Point(15, 12)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(73, 38)
@@ -199,12 +196,12 @@ Partial Class main
         '
         'TB_Logs
         '
-        Me.TB_Logs.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.TB_Logs.Font = New System.Drawing.Font("굴림", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TB_Logs.BackColor = System.Drawing.Color.FromArgb(CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer))
+        Me.TB_Logs.Font = New System.Drawing.Font("굴림", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.TB_Logs.Location = New System.Drawing.Point(21, 61)
-        Me.TB_Logs.Multiline = True
+        Me.TB_Logs.Multiline = true
         Me.TB_Logs.Name = "TB_Logs"
-        Me.TB_Logs.ReadOnly = True
+        Me.TB_Logs.ReadOnly = true
         Me.TB_Logs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TB_Logs.Size = New System.Drawing.Size(410, 527)
         Me.TB_Logs.TabIndex = 42
@@ -213,9 +210,6 @@ Partial Class main
         '
         Me.Panel5.BackColor = System.Drawing.Color.White
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel5.Controls.Add(Me.Label18)
-        Me.Panel5.Controls.Add(Me.Label14)
-        Me.Panel5.Controls.Add(Me.CB_DriveLetter)
         Me.Panel5.Controls.Add(Me.Label3)
         Me.Panel5.Controls.Add(Me.Panel7)
         Me.Panel5.Controls.Add(Me.Label_PG)
@@ -235,15 +229,15 @@ Partial Class main
         Me.Panel5.Controls.Add(Me.NUD_ScanStartVol)
         Me.Panel5.Controls.Add(Me.NUD_ScanPeriod)
         Me.Panel5.Controls.Add(Me.NUD_ImageLife)
-        Me.Panel5.Location = New System.Drawing.Point(235, 310)
+        Me.Panel5.Location = New System.Drawing.Point(235, 320)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(361, 384)
+        Me.Panel5.Size = New System.Drawing.Size(361, 374)
         Me.Panel5.TabIndex = 56
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label3.AutoSize = true
+        Me.Label3.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label3.Location = New System.Drawing.Point(12, 13)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(139, 38)
@@ -260,9 +254,9 @@ Partial Class main
         '
         'Label_PG
         '
-        Me.Label_PG.AutoSize = True
-        Me.Label_PG.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label_PG.Location = New System.Drawing.Point(15, 240)
+        Me.Label_PG.AutoSize = true
+        Me.Label_PG.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label_PG.Location = New System.Drawing.Point(15, 222)
         Me.Label_PG.Name = "Label_PG"
         Me.Label_PG.Size = New System.Drawing.Size(240, 28)
         Me.Label_PG.TabIndex = 43
@@ -270,64 +264,64 @@ Partial Class main
         '
         'Label17
         '
-        Me.Label17.AutoSize = True
+        Me.Label17.AutoSize = true
         Me.Label17.BackColor = System.Drawing.Color.Gray
-        Me.Label17.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label17.Location = New System.Drawing.Point(288, 197)
+        Me.Label17.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label17.Location = New System.Drawing.Point(288, 176)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(31, 22)
         Me.Label17.TabIndex = 35
         Me.Label17.Text = "？"
-        Me.ToolTip1.SetToolTip(Me.Label17, "검사를 매 시간 N분에 실행합니다." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "0~59")
+        Me.ToolTip1.SetToolTip(Me.Label17, "검사를 매 시간 N분에 실행합니다."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0~59")
         '
         'PB_VolPerScanVol
         '
         Me.PB_VolPerScanVol.BackColor = System.Drawing.Color.DimGray
-        Me.PB_VolPerScanVol.Location = New System.Drawing.Point(17, 272)
+        Me.PB_VolPerScanVol.Location = New System.Drawing.Point(17, 254)
         Me.PB_VolPerScanVol.Name = "PB_VolPerScanVol"
         Me.PB_VolPerScanVol.Size = New System.Drawing.Size(328, 23)
         Me.PB_VolPerScanVol.TabIndex = 41
         '
         'Btn_RunSelectedNow
         '
-        Me.Btn_RunSelectedNow.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Btn_RunSelectedNow.Location = New System.Drawing.Point(59, 340)
+        Me.Btn_RunSelectedNow.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Btn_RunSelectedNow.Location = New System.Drawing.Point(59, 322)
         Me.Btn_RunSelectedNow.Name = "Btn_RunSelectedNow"
         Me.Btn_RunSelectedNow.Size = New System.Drawing.Size(223, 34)
         Me.Btn_RunSelectedNow.TabIndex = 52
         Me.Btn_RunSelectedNow.Text = "선택한 설정 즉시 실행"
-        Me.Btn_RunSelectedNow.UseVisualStyleBackColor = True
+        Me.Btn_RunSelectedNow.UseVisualStyleBackColor = true
         '
         'Label16
         '
-        Me.Label16.AutoSize = True
+        Me.Label16.AutoSize = true
         Me.Label16.BackColor = System.Drawing.Color.Gray
-        Me.Label16.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label16.Location = New System.Drawing.Point(288, 154)
+        Me.Label16.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label16.Location = New System.Drawing.Point(288, 133)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(31, 22)
         Me.Label16.TabIndex = 34
         Me.Label16.Text = "？"
-        Me.ToolTip1.SetToolTip(Me.Label16, "현재 시간 기준 설정한 일 수가 지난 파일들을 삭제합니다." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1~1000")
+        Me.ToolTip1.SetToolTip(Me.Label16, "현재 시간 기준 설정한 일 수가 지난 파일들을 삭제합니다."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"1~1000")
         '
         'Label15
         '
-        Me.Label15.AutoSize = True
+        Me.Label15.AutoSize = true
         Me.Label15.BackColor = System.Drawing.Color.Gray
-        Me.Label15.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label15.Location = New System.Drawing.Point(288, 112)
+        Me.Label15.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label15.Location = New System.Drawing.Point(288, 91)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(31, 22)
         Me.Label15.TabIndex = 33
         Me.Label15.Text = "？"
-        Me.ToolTip1.SetToolTip(Me.Label15, "D드라이브의 전체 용량 대비 현재 용량의 비율이 지정한 수치를 넘어가면 검사를 시작합니다. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "0으로 두면 용량과 상관없이 검사를 시작합니다." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & _
+        Me.ToolTip1.SetToolTip(Me.Label15, "D드라이브의 전체 용량 대비 현재 용량의 비율이 지정한 수치를 넘어가면 검사를 시작합니다. "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"0으로 두면 용량과 상관없이 검사를 시작합니다."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
         "D드라이브를 감지하지 못하면 C드라이브를 검사합니다.")
         '
         'Label10
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label10.Location = New System.Drawing.Point(237, 189)
+        Me.Label10.AutoSize = true
+        Me.Label10.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label10.Location = New System.Drawing.Point(237, 168)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(40, 35)
         Me.Label10.TabIndex = 20
@@ -335,9 +329,9 @@ Partial Class main
         '
         'Label9
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label9.Location = New System.Drawing.Point(241, 104)
+        Me.Label9.AutoSize = true
+        Me.Label9.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label9.Location = New System.Drawing.Point(241, 83)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(36, 35)
         Me.Label9.TabIndex = 19
@@ -345,9 +339,9 @@ Partial Class main
         '
         'Label8
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label8.Location = New System.Drawing.Point(237, 146)
+        Me.Label8.AutoSize = true
+        Me.Label8.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label8.Location = New System.Drawing.Point(237, 125)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 35)
         Me.Label8.TabIndex = 18
@@ -355,9 +349,9 @@ Partial Class main
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label6.Location = New System.Drawing.Point(38, 189)
+        Me.Label6.AutoSize = true
+        Me.Label6.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label6.Location = New System.Drawing.Point(38, 168)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(124, 35)
         Me.Label6.TabIndex = 16
@@ -365,22 +359,22 @@ Partial Class main
         '
         'CB_RecycleBin
         '
-        Me.CB_RecycleBin.AutoSize = True
-        Me.CB_RecycleBin.Checked = True
+        Me.CB_RecycleBin.AutoSize = true
+        Me.CB_RecycleBin.Checked = true
         Me.CB_RecycleBin.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CB_RecycleBin.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.CB_RecycleBin.Location = New System.Drawing.Point(11, 302)
+        Me.CB_RecycleBin.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.CB_RecycleBin.Location = New System.Drawing.Point(11, 284)
         Me.CB_RecycleBin.Name = "CB_RecycleBin"
         Me.CB_RecycleBin.Size = New System.Drawing.Size(161, 32)
         Me.CB_RecycleBin.TabIndex = 50
         Me.CB_RecycleBin.Text = "휴지통에 삭제"
-        Me.CB_RecycleBin.UseVisualStyleBackColor = True
+        Me.CB_RecycleBin.UseVisualStyleBackColor = true
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label5.Location = New System.Drawing.Point(13, 146)
+        Me.Label5.AutoSize = true
+        Me.Label5.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label5.Location = New System.Drawing.Point(13, 125)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(149, 35)
         Me.Label5.TabIndex = 15
@@ -388,22 +382,22 @@ Partial Class main
         '
         'CB_DryRun
         '
-        Me.CB_DryRun.AutoSize = True
-        Me.CB_DryRun.Checked = True
+        Me.CB_DryRun.AutoSize = true
+        Me.CB_DryRun.Checked = true
         Me.CB_DryRun.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CB_DryRun.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.CB_DryRun.Location = New System.Drawing.Point(173, 302)
+        Me.CB_DryRun.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.CB_DryRun.Location = New System.Drawing.Point(173, 284)
         Me.CB_DryRun.Name = "CB_DryRun"
         Me.CB_DryRun.Size = New System.Drawing.Size(188, 32)
         Me.CB_DryRun.TabIndex = 49
         Me.CB_DryRun.Text = "삭제 없이 검사만"
-        Me.CB_DryRun.UseVisualStyleBackColor = True
+        Me.CB_DryRun.UseVisualStyleBackColor = true
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label4.Location = New System.Drawing.Point(38, 104)
+        Me.Label4.AutoSize = true
+        Me.Label4.Font = New System.Drawing.Font("맑은 고딕", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.Label4.Location = New System.Drawing.Point(38, 83)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(124, 35)
         Me.Label4.TabIndex = 14
@@ -411,8 +405,8 @@ Partial Class main
         '
         'NUD_ScanStartVol
         '
-        Me.NUD_ScanStartVol.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ScanStartVol.Location = New System.Drawing.Point(164, 109)
+        Me.NUD_ScanStartVol.Font = New System.Drawing.Font("굴림", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.NUD_ScanStartVol.Location = New System.Drawing.Point(164, 88)
         Me.NUD_ScanStartVol.Maximum = New Decimal(New Integer() {90, 0, 0, 0})
         Me.NUD_ScanStartVol.Name = "NUD_ScanStartVol"
         Me.NUD_ScanStartVol.Size = New System.Drawing.Size(67, 30)
@@ -420,8 +414,8 @@ Partial Class main
         '
         'NUD_ScanPeriod
         '
-        Me.NUD_ScanPeriod.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ScanPeriod.Location = New System.Drawing.Point(164, 194)
+        Me.NUD_ScanPeriod.Font = New System.Drawing.Font("굴림", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.NUD_ScanPeriod.Location = New System.Drawing.Point(164, 173)
         Me.NUD_ScanPeriod.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.NUD_ScanPeriod.Name = "NUD_ScanPeriod"
         Me.NUD_ScanPeriod.Size = New System.Drawing.Size(67, 30)
@@ -429,8 +423,8 @@ Partial Class main
         '
         'NUD_ImageLife
         '
-        Me.NUD_ImageLife.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ImageLife.Location = New System.Drawing.Point(164, 151)
+        Me.NUD_ImageLife.Font = New System.Drawing.Font("굴림", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.NUD_ImageLife.Location = New System.Drawing.Point(164, 130)
         Me.NUD_ImageLife.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NUD_ImageLife.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_ImageLife.Name = "NUD_ImageLife"
@@ -461,8 +455,8 @@ Partial Class main
         '
         'Label7
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label7.AutoSize = true
+        Me.Label7.Font = New System.Drawing.Font("맑은 고딕", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label7.Location = New System.Drawing.Point(11, 12)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(139, 38)
@@ -479,9 +473,9 @@ Partial Class main
         '
         'Label11
         '
-        Me.Label11.AutoSize = True
+        Me.Label11.AutoSize = true
         Me.Label11.BackColor = System.Drawing.Color.Gray
-        Me.Label11.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label11.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label11.Location = New System.Drawing.Point(308, 68)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(31, 22)
@@ -491,31 +485,31 @@ Partial Class main
         '
         'Btn_SelectFolderPath
         '
-        Me.Btn_SelectFolderPath.Font = New System.Drawing.Font("굴림", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Btn_SelectFolderPath.Font = New System.Drawing.Font("굴림", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Btn_SelectFolderPath.Location = New System.Drawing.Point(270, 170)
         Me.Btn_SelectFolderPath.Name = "Btn_SelectFolderPath"
         Me.Btn_SelectFolderPath.Size = New System.Drawing.Size(29, 34)
         Me.Btn_SelectFolderPath.TabIndex = 48
         Me.Btn_SelectFolderPath.Text = "🔍"
-        Me.Btn_SelectFolderPath.UseVisualStyleBackColor = True
+        Me.Btn_SelectFolderPath.UseVisualStyleBackColor = true
         '
         'Label13
         '
-        Me.Label13.AutoSize = True
+        Me.Label13.AutoSize = true
         Me.Label13.BackColor = System.Drawing.Color.Gray
-        Me.Label13.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label13.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label13.Location = New System.Drawing.Point(308, 177)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(31, 22)
         Me.Label13.TabIndex = 31
         Me.Label13.Text = "？"
-        Me.ToolTip1.SetToolTip(Me.Label13, "검사 대상이 될 폴더의 경로입니다. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "해당 경로 하위에 있는 모든 파일들은 검사 대상입니다.")
+        Me.ToolTip1.SetToolTip(Me.Label13, "검사 대상이 될 폴더의 경로입니다. "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"해당 경로 하위에 있는 모든 파일들은 검사 대상입니다.")
         '
         'Label12
         '
-        Me.Label12.AutoSize = True
+        Me.Label12.AutoSize = true
         Me.Label12.BackColor = System.Drawing.Color.Gray
-        Me.Label12.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label12.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label12.Location = New System.Drawing.Point(308, 109)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(31, 22)
@@ -525,8 +519,8 @@ Partial Class main
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("맑은 고딕", 14.0!)
+        Me.Label2.AutoSize = true
+        Me.Label2.Font = New System.Drawing.Font("맑은 고딕", 14!)
         Me.Label2.Location = New System.Drawing.Point(10, 172)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(119, 32)
@@ -535,8 +529,8 @@ Partial Class main
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("맑은 고딕", 14.0!)
+        Me.Label1.AutoSize = true
+        Me.Label1.Font = New System.Drawing.Font("맑은 고딕", 14!)
         Me.Label1.Location = New System.Drawing.Point(66, 100)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 32)
@@ -545,8 +539,8 @@ Partial Class main
         '
         'Lab_File_Name
         '
-        Me.Lab_File_Name.AutoSize = True
-        Me.Lab_File_Name.Font = New System.Drawing.Font("맑은 고딕", 14.0!)
+        Me.Lab_File_Name.AutoSize = true
+        Me.Lab_File_Name.Font = New System.Drawing.Font("맑은 고딕", 14!)
         Me.Lab_File_Name.Location = New System.Drawing.Point(10, 63)
         Me.Lab_File_Name.Name = "Lab_File_Name"
         Me.Lab_File_Name.Size = New System.Drawing.Size(119, 32)
@@ -555,7 +549,7 @@ Partial Class main
         '
         'TB_FolderSetName
         '
-        Me.TB_FolderSetName.Font = New System.Drawing.Font("굴림", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TB_FolderSetName.Font = New System.Drawing.Font("굴림", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.TB_FolderSetName.Location = New System.Drawing.Point(127, 61)
         Me.TB_FolderSetName.Name = "TB_FolderSetName"
         Me.TB_FolderSetName.Size = New System.Drawing.Size(172, 36)
@@ -563,9 +557,9 @@ Partial Class main
         '
         'TB_Memo
         '
-        Me.TB_Memo.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TB_Memo.Font = New System.Drawing.Font("굴림", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.TB_Memo.Location = New System.Drawing.Point(127, 106)
-        Me.TB_Memo.Multiline = True
+        Me.TB_Memo.Multiline = true
         Me.TB_Memo.Name = "TB_Memo"
         Me.TB_Memo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TB_Memo.Size = New System.Drawing.Size(172, 56)
@@ -573,7 +567,7 @@ Partial Class main
         '
         'TB_FolderPath
         '
-        Me.TB_FolderPath.Font = New System.Drawing.Font("굴림", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TB_FolderPath.Font = New System.Drawing.Font("굴림", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.TB_FolderPath.Location = New System.Drawing.Point(127, 170)
         Me.TB_FolderPath.Name = "TB_FolderPath"
         Me.TB_FolderPath.Size = New System.Drawing.Size(172, 36)
@@ -597,53 +591,53 @@ Partial Class main
         '
         'CB_AutoStartup
         '
-        Me.CB_AutoStartup.AutoSize = True
-        Me.CB_AutoStartup.Font = New System.Drawing.Font("맑은 고딕", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.CB_AutoStartup.AutoSize = true
+        Me.CB_AutoStartup.Font = New System.Drawing.Font("맑은 고딕", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.CB_AutoStartup.Location = New System.Drawing.Point(24, 574)
         Me.CB_AutoStartup.Name = "CB_AutoStartup"
         Me.CB_AutoStartup.Size = New System.Drawing.Size(157, 27)
         Me.CB_AutoStartup.TabIndex = 54
         Me.CB_AutoStartup.Text = "부팅시 자동실행"
-        Me.CB_AutoStartup.UseVisualStyleBackColor = True
+        Me.CB_AutoStartup.UseVisualStyleBackColor = true
         '
         'Btn_FolderSetList_Edit
         '
-        Me.Btn_FolderSetList_Edit.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Btn_FolderSetList_Edit.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Btn_FolderSetList_Edit.Location = New System.Drawing.Point(71, 649)
         Me.Btn_FolderSetList_Edit.Name = "Btn_FolderSetList_Edit"
         Me.Btn_FolderSetList_Edit.Size = New System.Drawing.Size(64, 34)
         Me.Btn_FolderSetList_Edit.TabIndex = 51
         Me.Btn_FolderSetList_Edit.Text = "수정"
-        Me.Btn_FolderSetList_Edit.UseVisualStyleBackColor = True
+        Me.Btn_FolderSetList_Edit.UseVisualStyleBackColor = true
         '
         'Btn_FolderSetList_Del
         '
-        Me.Btn_FolderSetList_Del.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer))
-        Me.Btn_FolderSetList_Del.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Btn_FolderSetList_Del.BackColor = System.Drawing.Color.FromArgb(CType(CType(227,Byte),Integer), CType(CType(28,Byte),Integer), CType(CType(28,Byte),Integer))
+        Me.Btn_FolderSetList_Del.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Btn_FolderSetList_Del.ForeColor = System.Drawing.Color.White
         Me.Btn_FolderSetList_Del.Location = New System.Drawing.Point(137, 649)
         Me.Btn_FolderSetList_Del.Name = "Btn_FolderSetList_Del"
         Me.Btn_FolderSetList_Del.Size = New System.Drawing.Size(63, 34)
         Me.Btn_FolderSetList_Del.TabIndex = 40
         Me.Btn_FolderSetList_Del.Text = "삭제"
-        Me.Btn_FolderSetList_Del.UseVisualStyleBackColor = False
+        Me.Btn_FolderSetList_Del.UseVisualStyleBackColor = false
         '
         'Btn_FolderSetList_Add
         '
-        Me.Btn_FolderSetList_Add.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.Btn_FolderSetList_Add.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Btn_FolderSetList_Add.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(95,Byte),Integer), CType(CType(184,Byte),Integer))
+        Me.Btn_FolderSetList_Add.Font = New System.Drawing.Font("맑은 고딕", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Btn_FolderSetList_Add.ForeColor = System.Drawing.Color.White
         Me.Btn_FolderSetList_Add.Location = New System.Drawing.Point(6, 649)
         Me.Btn_FolderSetList_Add.Name = "Btn_FolderSetList_Add"
         Me.Btn_FolderSetList_Add.Size = New System.Drawing.Size(63, 34)
         Me.Btn_FolderSetList_Add.TabIndex = 39
         Me.Btn_FolderSetList_Add.Text = "추가"
-        Me.Btn_FolderSetList_Add.UseVisualStyleBackColor = False
+        Me.Btn_FolderSetList_Add.UseVisualStyleBackColor = false
         '
         'Label_FolderSetList
         '
-        Me.Label_FolderSetList.AutoSize = True
-        Me.Label_FolderSetList.Font = New System.Drawing.Font("휴먼모음T", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label_FolderSetList.AutoSize = true
+        Me.Label_FolderSetList.Font = New System.Drawing.Font("휴먼모음T", 15!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Label_FolderSetList.Location = New System.Drawing.Point(19, 13)
         Me.Label_FolderSetList.Name = "Label_FolderSetList"
         Me.Label_FolderSetList.Size = New System.Drawing.Size(166, 27)
@@ -652,12 +646,12 @@ Partial Class main
         '
         'LB_FolderSetList
         '
-        Me.LB_FolderSetList.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.LB_FolderSetList.BackColor = System.Drawing.Color.FromArgb(CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer), CType(CType(224,Byte),Integer))
         Me.LB_FolderSetList.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LB_FolderSetList.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LB_FolderSetList.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.LB_FolderSetList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.LB_FolderSetList.FormattingEnabled = True
+        Me.LB_FolderSetList.Font = New System.Drawing.Font("휴먼모음T", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
+        Me.LB_FolderSetList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34,Byte),Integer), CType(CType(34,Byte),Integer), CType(CType(34,Byte),Integer))
+        Me.LB_FolderSetList.FormattingEnabled = true
         Me.LB_FolderSetList.ItemHeight = 22
         Me.LB_FolderSetList.Location = New System.Drawing.Point(6, 43)
         Me.LB_FolderSetList.Name = "LB_FolderSetList"
@@ -666,13 +660,13 @@ Partial Class main
         '
         'Btn_RunAllNow
         '
-        Me.Btn_RunAllNow.Font = New System.Drawing.Font("맑은 고딕", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Btn_RunAllNow.Font = New System.Drawing.Font("맑은 고딕", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129,Byte))
         Me.Btn_RunAllNow.Location = New System.Drawing.Point(6, 609)
         Me.Btn_RunAllNow.Name = "Btn_RunAllNow"
         Me.Btn_RunAllNow.Size = New System.Drawing.Size(194, 34)
         Me.Btn_RunAllNow.TabIndex = 53
         Me.Btn_RunAllNow.Text = "모든 설정 즉시 실행"
-        Me.Btn_RunAllNow.UseVisualStyleBackColor = True
+        Me.Btn_RunAllNow.UseVisualStyleBackColor = true
         '
         'Pan_FTPMg
         '
@@ -683,68 +677,37 @@ Partial Class main
         Me.Pan_FTPMg.Size = New System.Drawing.Size(1075, 716)
         Me.Pan_FTPMg.TabIndex = 0
         '
-        'CB_DriveLetter
-        '
-        Me.CB_DriveLetter.Font = New System.Drawing.Font("맑은 고딕", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.CB_DriveLetter.FormattingEnabled = True
-        Me.CB_DriveLetter.Location = New System.Drawing.Point(164, 68)
-        Me.CB_DriveLetter.Name = "CB_DriveLetter"
-        Me.CB_DriveLetter.Size = New System.Drawing.Size(67, 33)
-        Me.CB_DriveLetter.TabIndex = 53
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Gray
-        Me.Label14.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label14.Location = New System.Drawing.Point(243, 75)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(31, 22)
-        Me.Label14.TabIndex = 54
-        Me.Label14.Text = "？"
-        Me.ToolTip1.SetToolTip(Me.Label14, "용량 검사 대상 드라이브를 선택합니다. C~Z")
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label18.Location = New System.Drawing.Point(19, 69)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(139, 28)
-        Me.Label18.TabIndex = 55
-        Me.Label18.Text = "검사 드라이브"
-        '
         'main
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 15!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1075, 739)
         Me.Controls.Add(Me.Pan_Contents_Frame)
         Me.Controls.Add(Me.Pan_Menu_Frame)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.MaximizeBox = false
         Me.Name = "main"
         Me.Text = "영일산기 비전 툴 보조 도구"
-        Me.Pan_Menu_Frame.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pan_Contents_Frame.ResumeLayout(False)
-        Me.Pan_FileMg.ResumeLayout(False)
-        Me.Panel8.ResumeLayout(False)
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
-        Me.Panel5.ResumeLayout(False)
-        Me.Panel5.PerformLayout()
-        CType(Me.NUD_ScanStartVol, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NUD_ScanPeriod, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NUD_ImageLife, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.ResumeLayout(False)
+        Me.Pan_Menu_Frame.ResumeLayout(false)
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.Pan_Contents_Frame.ResumeLayout(false)
+        Me.Pan_FileMg.ResumeLayout(false)
+        Me.Panel8.ResumeLayout(false)
+        Me.Panel6.ResumeLayout(false)
+        Me.Panel6.PerformLayout
+        Me.Panel5.ResumeLayout(false)
+        Me.Panel5.PerformLayout
+        CType(Me.NUD_ScanStartVol,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NUD_ScanPeriod,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NUD_ImageLife,System.ComponentModel.ISupportInitialize).EndInit
+        Me.Panel4.ResumeLayout(false)
+        Me.Panel4.PerformLayout
+        Me.Panel1.ResumeLayout(false)
+        Me.Panel1.PerformLayout
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
     Friend WithEvents Pan_Menu_Frame As System.Windows.Forms.Panel
     Friend WithEvents Pan_Contents_Frame As System.Windows.Forms.Panel
     Friend WithEvents Pan_FileMg As System.Windows.Forms.Panel
@@ -799,7 +762,4 @@ Partial Class main
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents CB_AutoStartup As System.Windows.Forms.CheckBox
-    Friend WithEvents CB_DriveLetter As System.Windows.Forms.ComboBox
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
 End Class

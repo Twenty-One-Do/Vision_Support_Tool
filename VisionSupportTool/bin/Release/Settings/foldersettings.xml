@@ -1,21 +1,11 @@
 <?xml version="1.0"?>
 <ArrayOfFolderSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FolderSetting>
-    <FolderName>aaa</FolderName>
-    <Memo>aaa</Memo>
-    <FolderPath>D:\Image</FolderPath>
-    <StartThresholdGB>6</StartThresholdGB>
+    <FolderName>asd</FolderName>
+    <Memo>asd</Memo>
+    <FolderPath>C:\test</FolderPath>
+    <StartThresholdGB>20</StartThresholdGB>
     <ImageTTL_Days>1</ImageTTL_Days>
     <ScanInterval_Min>0</ScanInterval_Min>
-    <DriveLetter>G</DriveLetter>
-  </FolderSetting>
-  <FolderSetting>
-    <FolderName>aaa</FolderName>
-    <Memo>aaa</Memo>
-    <FolderPath>D:\Image</FolderPath>
-    <StartThresholdGB>6</StartThresholdGB>
-    <ImageTTL_Days>1</ImageTTL_Days>
-    <ScanInterval_Min>0</ScanInterval_Min>
-    <DriveLetter>X</DriveLetter>
   </FolderSetting>
 </ArrayOfFolderSetting>

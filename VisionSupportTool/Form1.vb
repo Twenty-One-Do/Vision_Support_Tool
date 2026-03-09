@@ -11,8 +11,6 @@ Public Class FolderSetting
     Public Property ImageTTL_Days As Integer    ' NUD_ImageLife (일)
     Public Property ScanInterval_Min As Integer ' NUD_ScanPeriod (0~59 분)
 
-    Public Property DriveLetter As String       ' CB_DriveLetter
-
     Public ReadOnly Property Display As String
         Get
             Return FolderName

@@ -33,13 +33,12 @@ Public Class CleanerService
             End If
 
             ' =========================================================
-            ' 1) 사용자 지정 드라이브 사용률 기준 검사 시작 여부 판단
-            '    - 사용자가 선택한 드라이브 사용
-            '    - 없으면 로그 남기고 C드라이브로 대체
-            '    - 파일 전수조사 금지
+            ' 1) 선택한 폴더 경로의 루트 드라이브 사용률 기준 검사 시작 여부 판단
+            '    - 파일 전수조사 절대 금지
+            '    - 경로에서 드라이브 문자 자동 추출
+            '    - 실패 시 C드라이브로 대체
             ' =========================================================
-            Dim requestedDrive As String = NormalizeDriveLetter(cfg.DriveLetter)
-
+            Dim requestedDrive As String = GetDriveLetterFromPath(root)
             Dim driveLetter As String = requestedDrive & ":\"
             Dim driveInfo As DriveInfo = Nothing
 
@@ -47,7 +46,7 @@ Public Class CleanerService
                 If DriveExists(requestedDrive) Then
                     driveInfo = New DriveInfo(requestedDrive)
                 Else
-                    RaiseEvent OnLog("[" & cfg.FolderName & "] " & requestedDrive & "드라이브가 없으므로 C드라이브로 검사합니다.")
+                    RaiseEvent OnLog("[" & cfg.FolderName & "] 경로의 드라이브를 확인할 수 없으므로 C드라이브로 검사합니다.")
                     driveInfo = New DriveInfo("C")
                     driveLetter = "C:\"
                 End If
@@ -175,15 +174,28 @@ Public Class CleanerService
         End Try
     End Sub
 
-    Private Function NormalizeDriveLetter(value As String) As String
-        If String.IsNullOrWhiteSpace(value) Then Return "D"
+    Private Function GetDriveLetterFromPath(pathValue As String) As String
+        Try
+            If String.IsNullOrWhiteSpace(pathValue) Then Return "C"
 
-        Dim s As String = value.Trim().ToUpper()
+            Dim fullPath As String = Path.GetFullPath(pathValue)
+            Dim root As String = Path.GetPathRoot(fullPath)
 
-        If s.Length <> 1 Then Return "D"
-        If s < "C" OrElse s > "Z" Then Return "D"
+            If String.IsNullOrWhiteSpace(root) Then Return "C"
 
-        Return s
+            root = root.Trim()
+
+            ' 예: "D:\" -> "D"
+            If root.Length >= 1 Then
+                Dim letter As String = root.Substring(0, 1).ToUpper()
+                If letter >= "A" AndAlso letter <= "Z" Then
+                    Return letter
+                End If
+            End If
+        Catch
+        End Try
+
+        Return "C"
     End Function
 
     Private Function DriveExists(driveName As String) As Boolean
