@@ -76,8 +76,8 @@ Public Class main
         CB_DriveLetter.Items.Clear()
 
         Dim i As Integer
-        For i = AscW("C"c) To AscW("I"c)
-            CB_DriveLetter.Items.Add(ChrW(i))
+        For i = AscW("C"c) To AscW("Z"c)
+            CB_DriveLetter.Items.Add(ChrW(i).ToString())
         Next
 
         CB_DriveLetter.DropDownStyle = ComboBoxStyle.DropDownList
