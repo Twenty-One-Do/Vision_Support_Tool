@@ -21,10 +21,16 @@ Public Class main
     ' 체크박스 초기화 중 이벤트 오작동 방지
     Private _isLoading As Boolean = False
 
+    ' 시작 시 백그라운드 모드 여부
+    Private _startBackground As Boolean = False
+
     ' ===== 폼 로드 =====
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             _isLoading = True
+
+            ' 시작 인자 확인
+            _startBackground = HasBackgroundArgument()
 
             _repo = New SettingsRepository(Application.StartupPath)
 
@@ -62,10 +68,52 @@ Public Class main
             NUD_ScanStartVol.Maximum = 90D
 
             LogLine("[INIT] 프로그램 초기화 완료.")
+
+            ' 자동실행(/background)으로 시작된 경우 창 숨김
+            If _startBackground Then
+                BeginInvoke(New Action(AddressOf StartInBackground))
+            End If
+
         Catch ex As Exception
             MessageBox.Show("초기화 중 오류: " & ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             _isLoading = False
+        End Try
+    End Sub
+
+    Private Function HasBackgroundArgument() As Boolean
+        Try
+            Dim args() As String = Environment.GetCommandLineArgs()
+            If args Is Nothing Then Return False
+
+            Dim i As Integer
+            For i = 0 To args.Length - 1
+                Dim s As String = args(i)
+                If s IsNot Nothing Then
+                    s = s.Trim().ToLower()
+                    If s = "/background" OrElse s = "-background" OrElse s = "/tray" OrElse s = "-tray" Then
+                        Return True
+                    End If
+                End If
+            Next
+        Catch
+        End Try
+
+        Return False
+    End Function
+
+    Private Sub StartInBackground()
+        Try
+            Me.Hide()
+            Me.WindowState = FormWindowState.Minimized
+            Me.ShowInTaskbar = False
+
+            If _tray IsNot Nothing Then
+                _tray.Visible = True
+            End If
+
+            LogLine("[AUTO] 백그라운드 모드로 시작됨")
+        Catch
         End Try
     End Sub
 
@@ -80,7 +128,7 @@ Public Class main
 
             If val Is Nothing Then Return False
 
-            Dim currentExe As String = """" & Application.ExecutablePath & """"
+            Dim currentExe As String = """" & Application.ExecutablePath & """ /background"
             Return String.Equals(val.ToString(), currentExe, StringComparison.OrdinalIgnoreCase)
         Catch ex As Exception
             LogLine("[WARN] 시작프로그램 등록 상태 확인 실패: " & ex.Message)
