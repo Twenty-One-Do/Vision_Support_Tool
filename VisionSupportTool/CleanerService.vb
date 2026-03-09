@@ -13,7 +13,6 @@ Public Class CleanerService
     Public Event OnCountUpdate(cfgName As String, count As Integer)
 
     ' ====== "폴더명 전체가 날짜"만 허용 ======
-    ' 허용: yyyyMMdd, yyyy.MM.dd, yyyy_MM_dd, yyyy-MM-dd
     Private Shared ReadOnly DateOnlyRegex As New Regex( _
         "^(?<y>\d{4})(?:[._-]?(?<m>\d{1,2}))(?:[._-]?(?<d>\d{1,2}))$", _
         RegexOptions.Compiled Or RegexOptions.CultureInvariant _
@@ -34,19 +33,21 @@ Public Class CleanerService
             End If
 
             ' =========================================================
-            ' 1) 드라이브 사용률 기준 검사 시작 여부 판단
-            '    - 기본 D: 드라이브 사용
-            '    - 없으면 C: 드라이브 사용
-            '    - 시스템 보고값만 사용, 파일 전수조사 금지
+            ' 1) 사용자 지정 드라이브 사용률 기준 검사 시작 여부 판단
+            '    - 사용자가 선택한 드라이브 사용
+            '    - 없으면 로그 남기고 C드라이브로 대체
+            '    - 파일 전수조사 금지
             ' =========================================================
-            Dim driveLetter As String = "D:\"
+            Dim requestedDrive As String = NormalizeDriveLetter(cfg.DriveLetter)
+
+            Dim driveLetter As String = requestedDrive & ":\"
             Dim driveInfo As DriveInfo = Nothing
 
             Try
-                If DriveExists("D") Then
-                    driveInfo = New DriveInfo("D")
+                If DriveExists(requestedDrive) Then
+                    driveInfo = New DriveInfo(requestedDrive)
                 Else
-                    RaiseEvent OnLog("[" & cfg.FolderName & "] D드라이브 감지 실패, C드라이브로 검사합니다.")
+                    RaiseEvent OnLog("[" & cfg.FolderName & "] " & requestedDrive & "드라이브가 없으므로 C드라이브로 검사합니다.")
                     driveInfo = New DriveInfo("C")
                     driveLetter = "C:\"
                 End If
@@ -87,17 +88,16 @@ Public Class CleanerService
             End If
 
             ' =========================================================
-            ' 2) TTL → 기준 날짜 자동 계산 (로컬 날짜 기준)
+            ' 2) TTL → 기준 날짜 자동 계산
             ' =========================================================
             Dim cutoffDate As Date = Date.Today.AddDays(-cfg.ImageTTL_Days)
 
-            RaiseEvent OnLog("[" & cfg.FolderName & "] 폴더명 날짜 기준 삭제 시작. cutoff <= " &
-                             cutoffDate.ToString("yyyy-MM-dd") &
+            RaiseEvent OnLog("[" & cfg.FolderName & "] 폴더명 날짜 기준 삭제 시작. cutoff <= " & _
+                             cutoffDate.ToString("yyyy-MM-dd") & _
                              " (TTL " & cfg.ImageTTL_Days & "일)")
 
             ' =========================================================
-            ' 3) 하위 모든 폴더 전수조사 → "폴더명 전체가 날짜"인 폴더만 후보
-            '    (파일 전수조사는 아니므로 허용)
+            ' 3) 하위 모든 폴더 조사 → 날짜형 폴더명만 후보
             ' =========================================================
             Dim allDirs As IEnumerable(Of String)
             Try
@@ -127,9 +127,7 @@ Public Class CleanerService
                 Exit Sub
             End If
 
-            ' =========================================================
-            ' 3-1) 부모/자식이 둘 다 후보면 "부모만" 남기기
-            ' =========================================================
+            ' 부모/자식 중복 제거
             Dim candidates As New List(Of CandidateDir)()
             Dim selected As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
 
@@ -154,7 +152,7 @@ Public Class CleanerService
             For Each c As CandidateDir In candidates
                 Try
                     If DryRun Then
-                        RaiseEvent OnLog("[" & cfg.FolderName & "][DRY-RUN] 삭제 대상 폴더: " &
+                        RaiseEvent OnLog("[" & cfg.FolderName & "][DRY-RUN] 삭제 대상 폴더: " & _
                                          c.DirPath & " (date=" & c.FolderDate.ToString("yyyy-MM-dd") & ")")
                     Else
                         DeleteDirectory(c.DirPath)
@@ -166,9 +164,6 @@ Public Class CleanerService
                 End Try
             Next
 
-            ' =========================================================
-            ' 5) 요약 로그
-            ' =========================================================
             If DryRun Then
                 RaiseEvent OnLog("[" & cfg.FolderName & "][DRY-RUN] 실제 삭제 없음.")
             Else
@@ -179,6 +174,17 @@ Public Class CleanerService
             RaiseEvent OnLog("[" & cfg.FolderName & "] 오류: " & ex.Message)
         End Try
     End Sub
+
+    Private Function NormalizeDriveLetter(value As String) As String
+        If String.IsNullOrWhiteSpace(value) Then Return "D"
+
+        Dim s As String = value.Trim().ToUpper()
+
+        If s.Length <> 1 Then Return "D"
+        If s < "C" OrElse s > "Z" Then Return "D"
+
+        Return s
+    End Function
 
     Private Function DriveExists(driveName As String) As Boolean
         Try
@@ -193,7 +199,6 @@ Public Class CleanerService
         Return False
     End Function
 
-    ' ===== 후보 타입 =====
     Private Class CandidateDir
         Public DirPath As String
         Public FolderDate As Date
@@ -207,7 +212,6 @@ Public Class CleanerService
         Return b.DirPath.Length.CompareTo(a.DirPath.Length)
     End Function
 
-    ' ----- 날짜 폴더명 파싱 -----
     Private Function TryParseDateOnlyFolderName(folderName As String, ByRef result As Date) As Boolean
         result = Date.MinValue
         If String.IsNullOrWhiteSpace(folderName) Then Return False
@@ -230,7 +234,6 @@ Public Class CleanerService
         Return True
     End Function
 
-    ' ----- 삭제 -----
     Private Sub DeleteDirectory(dirPath As String)
         If Not Directory.Exists(dirPath) Then Exit Sub
 
@@ -241,7 +244,6 @@ Public Class CleanerService
         End If
     End Sub
 
-    ' ----- 경로 정규화/부모 포함 판정 -----
     Private Function NormalizeDirPath(p As String) As String
         If String.IsNullOrWhiteSpace(p) Then Return ""
         Dim x As String = p.Trim()

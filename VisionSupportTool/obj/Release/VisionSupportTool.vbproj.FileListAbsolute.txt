@@ -8,3 +8,13 @@ C:\Users\USER\OneDrive\문서\Visual Studio 2012\Projects\VisionSupportTool\Visi
 C:\Users\USER\OneDrive\문서\Visual Studio 2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.exe
 C:\Users\USER\OneDrive\문서\Visual Studio 2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.xml
 C:\Users\USER\OneDrive\문서\Visual Studio 2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.pdb
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\bin\Release\VisionSupportTool.exe.config
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.exe
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.xml
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.pdb
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.main.resources
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.Resources.resources
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\obj\Release\VisionSupportTool.vbproj.GenerateResource.Cache
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\bin\Release\VisionSupportTool.exe
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\bin\Release\VisionSupportTool.pdb
+C:\Users\USER\OneDrive\문서\Visual_Studio_2012\Projects\VisionSupportTool\VisionSupportTool\bin\Release\VisionSupportTool.xml

@@ -78,6 +78,9 @@ Partial Class main
         Me.Btn_RunAllNow = New System.Windows.Forms.Button()
         Me.Pan_FTPMg = New System.Windows.Forms.Panel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CB_DriveLetter = New System.Windows.Forms.ComboBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.Pan_Menu_Frame.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pan_Contents_Frame.SuspendLayout()
@@ -210,6 +213,9 @@ Partial Class main
         '
         Me.Panel5.BackColor = System.Drawing.Color.White
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel5.Controls.Add(Me.Label18)
+        Me.Panel5.Controls.Add(Me.Label14)
+        Me.Panel5.Controls.Add(Me.CB_DriveLetter)
         Me.Panel5.Controls.Add(Me.Label3)
         Me.Panel5.Controls.Add(Me.Panel7)
         Me.Panel5.Controls.Add(Me.Label_PG)
@@ -229,9 +235,9 @@ Partial Class main
         Me.Panel5.Controls.Add(Me.NUD_ScanStartVol)
         Me.Panel5.Controls.Add(Me.NUD_ScanPeriod)
         Me.Panel5.Controls.Add(Me.NUD_ImageLife)
-        Me.Panel5.Location = New System.Drawing.Point(235, 342)
+        Me.Panel5.Location = New System.Drawing.Point(235, 310)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(361, 352)
+        Me.Panel5.Size = New System.Drawing.Size(361, 384)
         Me.Panel5.TabIndex = 56
         '
         'Label3
@@ -256,7 +262,7 @@ Partial Class main
         '
         Me.Label_PG.AutoSize = True
         Me.Label_PG.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label_PG.Location = New System.Drawing.Point(12, 207)
+        Me.Label_PG.Location = New System.Drawing.Point(15, 240)
         Me.Label_PG.Name = "Label_PG"
         Me.Label_PG.Size = New System.Drawing.Size(240, 28)
         Me.Label_PG.TabIndex = 43
@@ -267,7 +273,7 @@ Partial Class main
         Me.Label17.AutoSize = True
         Me.Label17.BackColor = System.Drawing.Color.Gray
         Me.Label17.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label17.Location = New System.Drawing.Point(285, 167)
+        Me.Label17.Location = New System.Drawing.Point(288, 197)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(31, 22)
         Me.Label17.TabIndex = 35
@@ -277,7 +283,7 @@ Partial Class main
         'PB_VolPerScanVol
         '
         Me.PB_VolPerScanVol.BackColor = System.Drawing.Color.DimGray
-        Me.PB_VolPerScanVol.Location = New System.Drawing.Point(14, 242)
+        Me.PB_VolPerScanVol.Location = New System.Drawing.Point(17, 272)
         Me.PB_VolPerScanVol.Name = "PB_VolPerScanVol"
         Me.PB_VolPerScanVol.Size = New System.Drawing.Size(328, 23)
         Me.PB_VolPerScanVol.TabIndex = 41
@@ -285,7 +291,7 @@ Partial Class main
         'Btn_RunSelectedNow
         '
         Me.Btn_RunSelectedNow.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Btn_RunSelectedNow.Location = New System.Drawing.Point(56, 310)
+        Me.Btn_RunSelectedNow.Location = New System.Drawing.Point(59, 340)
         Me.Btn_RunSelectedNow.Name = "Btn_RunSelectedNow"
         Me.Btn_RunSelectedNow.Size = New System.Drawing.Size(223, 34)
         Me.Btn_RunSelectedNow.TabIndex = 52
@@ -297,7 +303,7 @@ Partial Class main
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.Gray
         Me.Label16.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label16.Location = New System.Drawing.Point(285, 124)
+        Me.Label16.Location = New System.Drawing.Point(288, 154)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(31, 22)
         Me.Label16.TabIndex = 34
@@ -309,7 +315,7 @@ Partial Class main
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Gray
         Me.Label15.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label15.Location = New System.Drawing.Point(285, 82)
+        Me.Label15.Location = New System.Drawing.Point(288, 112)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(31, 22)
         Me.Label15.TabIndex = 33
@@ -321,7 +327,7 @@ Partial Class main
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label10.Location = New System.Drawing.Point(234, 159)
+        Me.Label10.Location = New System.Drawing.Point(237, 189)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(40, 35)
         Me.Label10.TabIndex = 20
@@ -331,7 +337,7 @@ Partial Class main
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label9.Location = New System.Drawing.Point(231, 74)
+        Me.Label9.Location = New System.Drawing.Point(241, 104)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(36, 35)
         Me.Label9.TabIndex = 19
@@ -341,7 +347,7 @@ Partial Class main
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label8.Location = New System.Drawing.Point(234, 116)
+        Me.Label8.Location = New System.Drawing.Point(237, 146)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(40, 35)
         Me.Label8.TabIndex = 18
@@ -351,7 +357,7 @@ Partial Class main
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label6.Location = New System.Drawing.Point(35, 159)
+        Me.Label6.Location = New System.Drawing.Point(38, 189)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(124, 35)
         Me.Label6.TabIndex = 16
@@ -363,7 +369,7 @@ Partial Class main
         Me.CB_RecycleBin.Checked = True
         Me.CB_RecycleBin.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CB_RecycleBin.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.CB_RecycleBin.Location = New System.Drawing.Point(8, 272)
+        Me.CB_RecycleBin.Location = New System.Drawing.Point(11, 302)
         Me.CB_RecycleBin.Name = "CB_RecycleBin"
         Me.CB_RecycleBin.Size = New System.Drawing.Size(161, 32)
         Me.CB_RecycleBin.TabIndex = 50
@@ -374,7 +380,7 @@ Partial Class main
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label5.Location = New System.Drawing.Point(10, 116)
+        Me.Label5.Location = New System.Drawing.Point(13, 146)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(149, 35)
         Me.Label5.TabIndex = 15
@@ -386,7 +392,7 @@ Partial Class main
         Me.CB_DryRun.Checked = True
         Me.CB_DryRun.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CB_DryRun.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.CB_DryRun.Location = New System.Drawing.Point(170, 272)
+        Me.CB_DryRun.Location = New System.Drawing.Point(173, 302)
         Me.CB_DryRun.Name = "CB_DryRun"
         Me.CB_DryRun.Size = New System.Drawing.Size(188, 32)
         Me.CB_DryRun.TabIndex = 49
@@ -397,7 +403,7 @@ Partial Class main
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("맑은 고딕", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label4.Location = New System.Drawing.Point(35, 74)
+        Me.Label4.Location = New System.Drawing.Point(38, 104)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(124, 35)
         Me.Label4.TabIndex = 14
@@ -406,7 +412,7 @@ Partial Class main
         'NUD_ScanStartVol
         '
         Me.NUD_ScanStartVol.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ScanStartVol.Location = New System.Drawing.Point(161, 79)
+        Me.NUD_ScanStartVol.Location = New System.Drawing.Point(164, 109)
         Me.NUD_ScanStartVol.Maximum = New Decimal(New Integer() {90, 0, 0, 0})
         Me.NUD_ScanStartVol.Name = "NUD_ScanStartVol"
         Me.NUD_ScanStartVol.Size = New System.Drawing.Size(67, 30)
@@ -415,7 +421,7 @@ Partial Class main
         'NUD_ScanPeriod
         '
         Me.NUD_ScanPeriod.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ScanPeriod.Location = New System.Drawing.Point(161, 164)
+        Me.NUD_ScanPeriod.Location = New System.Drawing.Point(164, 194)
         Me.NUD_ScanPeriod.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.NUD_ScanPeriod.Name = "NUD_ScanPeriod"
         Me.NUD_ScanPeriod.Size = New System.Drawing.Size(67, 30)
@@ -424,7 +430,7 @@ Partial Class main
         'NUD_ImageLife
         '
         Me.NUD_ImageLife.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.NUD_ImageLife.Location = New System.Drawing.Point(161, 121)
+        Me.NUD_ImageLife.Location = New System.Drawing.Point(164, 151)
         Me.NUD_ImageLife.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NUD_ImageLife.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_ImageLife.Name = "NUD_ImageLife"
@@ -450,7 +456,7 @@ Partial Class main
         Me.Panel4.Controls.Add(Me.TB_FolderPath)
         Me.Panel4.Location = New System.Drawing.Point(235, 83)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(360, 245)
+        Me.Panel4.Size = New System.Drawing.Size(360, 221)
         Me.Panel4.TabIndex = 55
         '
         'Label7
@@ -486,7 +492,7 @@ Partial Class main
         'Btn_SelectFolderPath
         '
         Me.Btn_SelectFolderPath.Font = New System.Drawing.Font("굴림", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Btn_SelectFolderPath.Location = New System.Drawing.Point(270, 194)
+        Me.Btn_SelectFolderPath.Location = New System.Drawing.Point(270, 170)
         Me.Btn_SelectFolderPath.Name = "Btn_SelectFolderPath"
         Me.Btn_SelectFolderPath.Size = New System.Drawing.Size(29, 34)
         Me.Btn_SelectFolderPath.TabIndex = 48
@@ -498,7 +504,7 @@ Partial Class main
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Gray
         Me.Label13.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label13.Location = New System.Drawing.Point(308, 201)
+        Me.Label13.Location = New System.Drawing.Point(308, 177)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(31, 22)
         Me.Label13.TabIndex = 31
@@ -510,7 +516,7 @@ Partial Class main
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Gray
         Me.Label12.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label12.Location = New System.Drawing.Point(308, 111)
+        Me.Label12.Location = New System.Drawing.Point(308, 109)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(31, 22)
         Me.Label12.TabIndex = 30
@@ -521,7 +527,7 @@ Partial Class main
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("맑은 고딕", 14.0!)
-        Me.Label2.Location = New System.Drawing.Point(10, 196)
+        Me.Label2.Location = New System.Drawing.Point(10, 172)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(119, 32)
         Me.Label2.TabIndex = 12
@@ -531,7 +537,7 @@ Partial Class main
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("맑은 고딕", 14.0!)
-        Me.Label1.Location = New System.Drawing.Point(66, 102)
+        Me.Label1.Location = New System.Drawing.Point(66, 100)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 32)
         Me.Label1.TabIndex = 11
@@ -558,17 +564,17 @@ Partial Class main
         'TB_Memo
         '
         Me.TB_Memo.Font = New System.Drawing.Font("굴림", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.TB_Memo.Location = New System.Drawing.Point(127, 108)
+        Me.TB_Memo.Location = New System.Drawing.Point(127, 106)
         Me.TB_Memo.Multiline = True
         Me.TB_Memo.Name = "TB_Memo"
         Me.TB_Memo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TB_Memo.Size = New System.Drawing.Size(172, 77)
+        Me.TB_Memo.Size = New System.Drawing.Size(172, 56)
         Me.TB_Memo.TabIndex = 8
         '
         'TB_FolderPath
         '
         Me.TB_FolderPath.Font = New System.Drawing.Font("굴림", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.TB_FolderPath.Location = New System.Drawing.Point(127, 194)
+        Me.TB_FolderPath.Location = New System.Drawing.Point(127, 170)
         Me.TB_FolderPath.Name = "TB_FolderPath"
         Me.TB_FolderPath.Size = New System.Drawing.Size(172, 36)
         Me.TB_FolderPath.TabIndex = 7
@@ -677,6 +683,37 @@ Partial Class main
         Me.Pan_FTPMg.Size = New System.Drawing.Size(1075, 716)
         Me.Pan_FTPMg.TabIndex = 0
         '
+        'CB_DriveLetter
+        '
+        Me.CB_DriveLetter.Font = New System.Drawing.Font("맑은 고딕", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.CB_DriveLetter.FormattingEnabled = True
+        Me.CB_DriveLetter.Location = New System.Drawing.Point(164, 68)
+        Me.CB_DriveLetter.Name = "CB_DriveLetter"
+        Me.CB_DriveLetter.Size = New System.Drawing.Size(67, 33)
+        Me.CB_DriveLetter.TabIndex = 53
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Gray
+        Me.Label14.Font = New System.Drawing.Font("휴먼모음T", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label14.Location = New System.Drawing.Point(243, 75)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(31, 22)
+        Me.Label14.TabIndex = 54
+        Me.Label14.Text = "？"
+        Me.ToolTip1.SetToolTip(Me.Label14, "용량 검사 대상 드라이브를 선택합니다. C~Z")
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("맑은 고딕", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label18.Location = New System.Drawing.Point(19, 69)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(139, 28)
+        Me.Label18.TabIndex = 55
+        Me.Label18.Text = "검사 드라이브"
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
@@ -762,4 +799,7 @@ Partial Class main
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents CB_AutoStartup As System.Windows.Forms.CheckBox
+    Friend WithEvents CB_DriveLetter As System.Windows.Forms.ComboBox
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
 End Class

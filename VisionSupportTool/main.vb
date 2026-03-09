@@ -18,7 +18,7 @@ Public Class main
     Private Const STARTUP_RUN_KEY As String = "Software\Microsoft\Windows\CurrentVersion\Run"
     Private Const STARTUP_VALUE_NAME As String = "VisionSupportTool"
 
-    ' 체크박스 초기화 중 이벤트 오작동 방지
+    ' 체크박스/콤보박스 초기화 중 이벤트 오작동 방지
     Private _isLoading As Boolean = False
 
     ' ===== 폼 로드 =====
@@ -26,10 +26,8 @@ Public Class main
         Try
             _isLoading = True
 
-            ' 저장소 초기화
             _repo = New SettingsRepository(Application.StartupPath)
 
-            ' 설정 로드
             Try
                 _folderSets = _repo.LoadSettings()
                 LogLine("[LOAD] 설정 로드 완료: " & _folderSets.Count & "개")
@@ -38,32 +36,31 @@ Public Class main
                 LogLine("[WARN] 설정 로드 실패: " & ex.Message)
             End Try
 
-            ' 리스트박스 바인딩
             LB_FolderSetList.DataSource = _folderSets
             LB_FolderSetList.DisplayMember = "Display"
 
-            ' 클리너 초기화
             _cleaner = New CleanerService()
             AddHandler _cleaner.OnLog, AddressOf HandleServiceLog
             AddHandler _cleaner.OnCapacityUpdate, AddressOf HandleCapacityUpdate
             AddHandler _cleaner.OnCountUpdate, AddressOf HandleCountUpdate
 
-            ' 체크박스 상태 반영
             _cleaner.DryRun = CB_DryRun.Checked
             _cleaner.UseRecycleBin = CB_RecycleBin.Checked
 
-            ' 스케줄러 초기화
             _scheduler = New SchedulerService(_cleaner, _folderSets)
             AddHandler _scheduler.OnLog, AddressOf HandleServiceLog
             _scheduler.Start()
 
-            ' ===== 트레이 아이콘 초기화 =====
             InitTray()
 
-            ' ===== 자동 실행 체크박스 초기 상태 반영 =====
             If CB_AutoStartup IsNot Nothing Then
                 CB_AutoStartup.Checked = IsStartupRegistered()
             End If
+
+            InitDriveCombo()
+
+            NUD_ScanStartVol.Minimum = 0D
+            NUD_ScanStartVol.Maximum = 90D
 
             LogLine("[INIT] 프로그램 초기화 완료.")
         Catch ex As Exception
@@ -73,7 +70,58 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 자동 실행 등록 여부 확인 =====
+    Private Sub InitDriveCombo()
+        If CB_DriveLetter Is Nothing Then Return
+
+        CB_DriveLetter.Items.Clear()
+
+        Dim i As Integer
+        For i = AscW("C"c) To AscW("I"c)
+            CB_DriveLetter.Items.Add(ChrW(i))
+        Next
+
+        CB_DriveLetter.DropDownStyle = ComboBoxStyle.DropDownList
+
+        If CB_DriveLetter.Items.Contains("D") Then
+            CB_DriveLetter.SelectedItem = "D"
+        ElseIf CB_DriveLetter.Items.Count > 0 Then
+            CB_DriveLetter.SelectedIndex = 0
+        End If
+    End Sub
+
+    Private Function NormalizeDriveLetter(value As String) As String
+        If String.IsNullOrWhiteSpace(value) Then Return "D"
+
+        Dim s As String = value.Trim().ToUpper()
+
+        If s.Length <> 1 Then Return "D"
+        If s < "C" OrElse s > "Z" Then Return "D"
+
+        Return s
+    End Function
+
+    Private Function GetSelectedDriveLetter() As String
+        If CB_DriveLetter Is Nothing OrElse CB_DriveLetter.SelectedItem Is Nothing Then
+            Return "D"
+        End If
+
+        Return NormalizeDriveLetter(CB_DriveLetter.SelectedItem.ToString())
+    End Function
+
+    Private Sub SetSelectedDriveLetter(value As String)
+        Dim driveLetter As String = NormalizeDriveLetter(value)
+
+        If CB_DriveLetter Is Nothing Then Return
+
+        If CB_DriveLetter.Items.Contains(driveLetter) Then
+            CB_DriveLetter.SelectedItem = driveLetter
+        ElseIf CB_DriveLetter.Items.Contains("D") Then
+            CB_DriveLetter.SelectedItem = "D"
+        ElseIf CB_DriveLetter.Items.Count > 0 Then
+            CB_DriveLetter.SelectedIndex = 0
+        End If
+    End Sub
+
     Private Function IsStartupRegistered() As Boolean
         Try
             Dim key As RegistryKey = Registry.CurrentUser.OpenSubKey(STARTUP_RUN_KEY, False)
@@ -92,7 +140,6 @@ Public Class main
         End Try
     End Function
 
-    ' ===== 자동 실행 등록 =====
     Private Sub RegisterStartup()
         Try
             Dim exePath As String = """" & Application.ExecutablePath & """"
@@ -112,7 +159,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 자동 실행 해제 =====
     Private Sub UnregisterStartup()
         Try
             Dim key As RegistryKey = Registry.CurrentUser.OpenSubKey(STARTUP_RUN_KEY, True)
@@ -127,7 +173,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 자동 실행 체크박스 변경 =====
     Private Sub CB_AutoStartup_CheckedChanged(sender As Object, e As EventArgs) Handles CB_AutoStartup.CheckedChanged
         If _isLoading Then Return
 
@@ -142,7 +187,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 트레이 =====
     Private Sub InitTray()
         Try
             _tray = New NotifyIcon()
@@ -163,7 +207,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 폼 종료(닫기) 처리 =====
     Private Sub main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Not _allowExit Then
             e.Cancel = True
@@ -204,7 +247,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 트레이 메뉴 핸들러 =====
     Private Sub Tray_Open_Click(sender As Object, e As EventArgs)
         Try
             Me.Show()
@@ -234,7 +276,6 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 로그 헬퍼 =====
     Private Sub LogLine(msg As String)
         If TB_Logs.InvokeRequired Then
             TB_Logs.Invoke(New Action(Of String)(AddressOf LogLine), msg)
@@ -243,19 +284,18 @@ Public Class main
         End If
     End Sub
 
-    ' ===== CleanerService / SchedulerService 이벤트 핸들러 =====
     Private Sub HandleServiceLog(msg As String)
         LogLine(msg)
     End Sub
 
-    Private Sub HandleCapacityUpdate(cfgName As String, totalGB As Decimal, startGB As Decimal)
+    Private Sub HandleCapacityUpdate(cfgName As String, totalPercent As Decimal, startPercent As Decimal)
         Try
             If PB_VolPerScanVol.InvokeRequired Then
-                PB_VolPerScanVol.Invoke(New Action(Of String, Decimal, Decimal)(AddressOf HandleCapacityUpdate), cfgName, totalGB, startGB)
+                PB_VolPerScanVol.Invoke(New Action(Of String, Decimal, Decimal)(AddressOf HandleCapacityUpdate), cfgName, totalPercent, startPercent)
             Else
                 Dim percent As Integer = 0
-                If startGB > 0D Then
-                    percent = CInt(Math.Min(100, (totalGB / startGB) * 100))
+                If startPercent > 0D Then
+                    percent = CInt(Math.Min(100, (totalPercent / startPercent) * 100))
                 End If
                 PB_VolPerScanVol.Value = percent
             End If
@@ -264,10 +304,9 @@ Public Class main
     End Sub
 
     Private Sub HandleCountUpdate(cfgName As String, count As Integer)
-        LogLine("[" & cfgName & "] 대상 파일 수: " & count)
+        LogLine("[" & cfgName & "] 대상 수: " & count)
     End Sub
 
-    ' ===== 체크박스 상태 변경 =====
     Private Sub CB_DryRun_CheckedChanged(sender As Object, e As EventArgs) Handles CB_DryRun.CheckedChanged
         If _cleaner Is Nothing Then Return
         _cleaner.DryRun = CB_DryRun.Checked
@@ -280,7 +319,6 @@ Public Class main
         LogLine("휴지통 삭제 모드: " & If(_cleaner.UseRecycleBin, "ON", "OFF"))
     End Sub
 
-    ' ===== 폴더 경로 선택 =====
     Private Sub Btn_SelectFolderPath_Click(sender As Object, e As EventArgs) Handles Btn_SelectFolderPath.Click
         Using dlg As New FolderBrowserDialog()
             dlg.Description = "폴더 경로를 선택하세요."
@@ -295,7 +333,6 @@ Public Class main
         End Using
     End Sub
 
-    ' ===== 리스트 선택 시 설정 불러오기 =====
     Private Sub LB_FolderSetList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LB_FolderSetList.SelectedIndexChanged
         Dim idx As Integer = LB_FolderSetList.SelectedIndex
         If idx < 0 OrElse idx >= _folderSets.Count Then Return
@@ -307,9 +344,9 @@ Public Class main
         NUD_ScanStartVol.Value = cfg.StartThresholdGB
         NUD_ImageLife.Value = cfg.ImageTTL_Days
         NUD_ScanPeriod.Value = cfg.ScanInterval_Min
+        SetSelectedDriveLetter(cfg.DriveLetter)
     End Sub
 
-    ' ===== 설정 추가 =====
     Private Sub Btn_FolderSetList_Add_Click(sender As Object, e As EventArgs) Handles Btn_FolderSetList_Add.Click
         Try
             Dim cfg As New FolderSetting() With {
@@ -318,7 +355,8 @@ Public Class main
                 .FolderPath = TB_FolderPath.Text.Trim(),
                 .StartThresholdGB = NUD_ScanStartVol.Value,
                 .ImageTTL_Days = CInt(NUD_ImageLife.Value),
-                .ScanInterval_Min = CInt(NUD_ScanPeriod.Value)
+                .ScanInterval_Min = CInt(NUD_ScanPeriod.Value),
+                .DriveLetter = GetSelectedDriveLetter()
             }
 
             _folderSets.Add(cfg)
@@ -330,10 +368,10 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 설정 수정 =====
     Private Sub Btn_FolderSetList_Edit_Click(sender As Object, e As EventArgs) Handles Btn_FolderSetList_Edit.Click
         Dim idx As Integer = LB_FolderSetList.SelectedIndex
         If idx < 0 OrElse idx >= _folderSets.Count Then Return
+
         Try
             Dim cfg As FolderSetting = _folderSets(idx)
             cfg.FolderName = TB_FolderSetName.Text.Trim()
@@ -342,6 +380,7 @@ Public Class main
             cfg.StartThresholdGB = NUD_ScanStartVol.Value
             cfg.ImageTTL_Days = CInt(NUD_ImageLife.Value)
             cfg.ScanInterval_Min = CInt(NUD_ScanPeriod.Value)
+            cfg.DriveLetter = GetSelectedDriveLetter()
 
             LB_FolderSetList.DataSource = Nothing
             LB_FolderSetList.DisplayMember = Nothing
@@ -355,14 +394,13 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 설정 삭제 =====
     Private Sub Btn_FolderSetList_Del_Click(sender As Object, e As EventArgs) Handles Btn_FolderSetList_Del.Click
         Dim idx As Integer = LB_FolderSetList.SelectedIndex
         If idx < 0 OrElse idx >= _folderSets.Count Then Return
         Dim cfg As FolderSetting = _folderSets(idx)
 
-        Dim result As DialogResult = MessageBox.Show(
-            String.Format("'{0}' 폴더 설정을 정말 삭제하시겠습니까?" & vbCrLf & "이 작업은 되돌릴 수 없습니다.", cfg.FolderName),
+        Dim result As DialogResult = MessageBox.Show( _
+            String.Format("'{0}' 폴더 설정을 정말 삭제하시겠습니까?" & vbCrLf & "이 작업은 되돌릴 수 없습니다.", cfg.FolderName), _
             "삭제 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If result <> DialogResult.Yes Then
@@ -376,7 +414,6 @@ Public Class main
         LogLine("[DEL] " & cfg.Display)
     End Sub
 
-    ' ===== 즉시 실행 (선택 항목) =====
     Private Sub Btn_RunSelectedNow_Click(sender As Object, e As EventArgs) Handles Btn_RunSelectedNow.Click
         Dim idx As Integer = LB_FolderSetList.SelectedIndex
         If idx < 0 OrElse idx >= _folderSets.Count Then
@@ -386,7 +423,6 @@ Public Class main
         _scheduler.RunOneNow(_folderSets(idx))
     End Sub
 
-    ' ===== 즉시 실행 (전체) =====
     Private Sub Btn_RunAllNow_Click(sender As Object, e As EventArgs) Handles Btn_RunAllNow.Click
         _scheduler.RunAllNow()
     End Sub
