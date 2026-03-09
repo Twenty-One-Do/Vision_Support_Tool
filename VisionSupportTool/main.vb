@@ -24,13 +24,47 @@ Public Class main
     ' 시작 시 백그라운드 모드 여부
     Private _startBackground As Boolean = False
 
+    ' 첫 표시 차단용
+    Private _allowInitialShow As Boolean = False
+
+    ' ===== 생성자 =====
+    Public Sub New()
+        MyBase.New()
+
+        ' 시작 인자 먼저 확인
+        _startBackground = HasBackgroundArgument()
+
+        InitializeComponent()
+
+        If _startBackground Then
+            _allowInitialShow = False
+            Me.ShowInTaskbar = False
+            Me.WindowState = FormWindowState.Minimized
+            Me.Opacity = 0
+        Else
+            _allowInitialShow = True
+        End If
+    End Sub
+
+    ' ===== 폼이 처음 표시될 때 자체를 막음 =====
+    Protected Overrides Sub SetVisibleCore(value As Boolean)
+        If Not Me.IsHandleCreated Then
+            MyBase.SetVisibleCore(value)
+            Return
+        End If
+
+        If _startBackground AndAlso Not _allowInitialShow AndAlso value Then
+            ' 자동 시작 백그라운드 모드면 첫 표시를 막음
+            value = False
+        End If
+
+        MyBase.SetVisibleCore(value)
+    End Sub
+
     ' ===== 폼 로드 =====
     Private Sub main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             _isLoading = True
-
-            ' 시작 인자 확인
-            _startBackground = HasBackgroundArgument()
 
             _repo = New SettingsRepository(Application.StartupPath)
 
@@ -69,9 +103,8 @@ Public Class main
 
             LogLine("[INIT] 프로그램 초기화 완료.")
 
-            ' 자동실행(/background)으로 시작된 경우 창 숨김
             If _startBackground Then
-                BeginInvoke(New Action(AddressOf StartInBackground))
+                StartInBackground()
             End If
 
         Catch ex As Exception
@@ -81,6 +114,7 @@ Public Class main
         End Try
     End Sub
 
+    ' ===== 시작 인자 확인 =====
     Private Function HasBackgroundArgument() As Boolean
         Try
             Dim args() As String = Environment.GetCommandLineArgs()
@@ -102,11 +136,14 @@ Public Class main
         Return False
     End Function
 
+    ' ===== 백그라운드 시작 =====
     Private Sub StartInBackground()
         Try
+            _allowInitialShow = False
+            Me.Opacity = 1
             Me.Hide()
-            Me.WindowState = FormWindowState.Minimized
             Me.ShowInTaskbar = False
+            Me.WindowState = FormWindowState.Minimized
 
             If _tray IsNot Nothing Then
                 _tray.Visible = True
@@ -251,6 +288,8 @@ Public Class main
     ' ===== 트레이 메뉴 핸들러 =====
     Private Sub Tray_Open_Click(sender As Object, e As EventArgs)
         Try
+            _allowInitialShow = True
+            Me.Opacity = 1
             Me.Show()
             Me.WindowState = FormWindowState.Normal
             Me.ShowInTaskbar = True

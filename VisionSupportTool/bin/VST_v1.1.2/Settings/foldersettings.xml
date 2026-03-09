@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <ArrayOfFolderSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FolderSetting>
-    <FolderName>R측</FolderName>
-    <Memo>ㅁㄴㅇ</Memo>
-    <FolderPath>C:\test\Image</FolderPath>
-    <StartThresholdGB>10</StartThresholdGB>
+    <FolderName>adsd</FolderName>
+    <Memo>asd</Memo>
+    <FolderPath>D:\</FolderPath>
+    <StartThresholdGB>4</StartThresholdGB>
     <ImageTTL_Days>1</ImageTTL_Days>
     <ScanInterval_Min>0</ScanInterval_Min>
-    <DriveLetter>D</DriveLetter>
   </FolderSetting>
 </ArrayOfFolderSetting>
