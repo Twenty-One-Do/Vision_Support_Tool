@@ -73,6 +73,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FtpHostSetting.vb" />
+    <Compile Include="FtpPathHelper.vb" />
+    <Compile Include="FtpServerService.vb" />
+    <Compile Include="FtpSettingRepository.vb" />
     <Compile Include="SchedulerService.vb" />
     <Compile Include="SettingsRepository.vb" />
     <Compile Include="CleanerService.vb" />

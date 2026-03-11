@@ -10,6 +10,11 @@ Public Class main
     Private _scheduler As SchedulerService
     Private _folderSets As BindingList(Of FolderSetting)
 
+    ' ===== FTP =====
+    Private _ftpRepo As FtpSettingsRepository
+    Private _ftpSetting As FtpHostSetting
+    Private _ftpService As FtpServerService
+
     ' ===== 트레이 실행용 =====
     Private _tray As NotifyIcon
     Private _allowExit As Boolean = False
@@ -54,7 +59,6 @@ Public Class main
         End If
 
         If _startBackground AndAlso Not _allowInitialShow AndAlso value Then
-            ' 자동 시작 백그라운드 모드면 첫 표시를 막음
             value = False
         End If
 
@@ -101,6 +105,62 @@ Public Class main
             NUD_ScanStartVol.Minimum = 0D
             NUD_ScanStartVol.Maximum = 90D
 
+            ' ===== FTP 초기화 =====
+            Try
+                _ftpRepo = New FtpSettingsRepository(Application.StartupPath)
+                _ftpSetting = _ftpRepo.LoadSetting()
+
+                If _ftpSetting Is Nothing Then
+                    _ftpSetting = New FtpHostSetting()
+                End If
+
+                _ftpService = New FtpServerService()
+                AddHandler _ftpService.OnLog, AddressOf HandleServiceLog
+
+                TB_FtpRootFolder.Text = _ftpSetting.RootFolder
+                NUD_FtpPort.Value = _ftpSetting.Port
+                CB_FtpAllowAnonymous.Checked = _ftpSetting.AllowAnonymous
+                TB_FtpUserName.Text = _ftpSetting.UserName
+                TB_FtpPassword.Text = _ftpSetting.Password
+                CB_FtpAutoStart.Checked = _ftpSetting.AutoStartOnProgramLaunch
+
+                UpdateFtpAuthUi()
+
+                Lab_FtpStatus.Text = "FTP 상태: 중지"
+                Btn_FtpStart.Enabled = True
+                Btn_FtpStop.Enabled = False
+
+                LogFtpLine("[FTP] 설정 로드 완료")
+
+                If _ftpSetting.Enabled AndAlso _ftpSetting.AutoStartOnProgramLaunch Then
+                    _ftpService.Start(_ftpSetting)
+                    Lab_FtpStatus.Text = "FTP 상태: 실행 중"
+                    Btn_FtpStart.Enabled = False
+                    Btn_FtpStop.Enabled = True
+                    LogFtpLine("[FTP] 자동 시작 완료")
+                End If
+
+            Catch ex As Exception
+                LogLine("[FTP][ERROR] 초기화 실패: " & ex.Message)
+                LogFtpLine("[FTP][ERROR] 초기화 실패: " & ex.Message)
+
+                TB_FtpRootFolder.Text = "D:\FTP_ROOT"
+                NUD_FtpPort.Value = 2121
+                CB_FtpAllowAnonymous.Checked = False
+                TB_FtpUserName.Text = "camera"
+                TB_FtpPassword.Text = "1234"
+                CB_FtpAutoStart.Checked = False
+
+                UpdateFtpAuthUi()
+
+                Lab_FtpStatus.Text = "FTP 상태: 초기화 실패"
+                Btn_FtpStart.Enabled = True
+                Btn_FtpStop.Enabled = False
+            End Try
+
+            ArrangePages()
+            ShowFileMgPage()
+
             LogLine("[INIT] 프로그램 초기화 완료.")
 
             If _startBackground Then
@@ -112,6 +172,48 @@ Public Class main
         Finally
             _isLoading = False
         End Try
+    End Sub
+
+    ' ===== 화면 배치 =====
+    Private Sub ArrangePages()
+        Dim topY As Integer = Panel8.Bottom
+
+        Pan_FileMg.Dock = DockStyle.None
+        Pan_FTPMg.Dock = DockStyle.None
+
+        Pan_FileMg.Left = 0
+        Pan_FileMg.Top = topY
+        Pan_FileMg.Width = Me.ClientSize.Width
+        Pan_FileMg.Height = Me.ClientSize.Height - topY
+
+        Pan_FTPMg.Left = 0
+        Pan_FTPMg.Top = topY
+        Pan_FTPMg.Width = Me.ClientSize.Width
+        Pan_FTPMg.Height = Me.ClientSize.Height - topY
+    End Sub
+
+    Private Sub main_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        ArrangePages()
+    End Sub
+
+    Private Sub ShowFileMgPage()
+        Pan_FileMg.Visible = True
+        Pan_FileMg.BringToFront()
+        Pan_FTPMg.Visible = False
+    End Sub
+
+    Private Sub ShowFtpMgPage()
+        Pan_FTPMg.Visible = True
+        Pan_FTPMg.BringToFront()
+        Pan_FileMg.Visible = False
+    End Sub
+
+    Private Sub Btn_ShowFileMg_Click(sender As Object, e As EventArgs) Handles Btn_ShowFileMg.Click
+        ShowFileMgPage()
+    End Sub
+
+    Private Sub Btn_ShowFtpMg_Click(sender As Object, e As EventArgs) Handles Btn_ShowFtpMg.Click
+        ShowFtpMgPage()
     End Sub
 
     ' ===== 시작 인자 확인 =====
@@ -276,6 +378,11 @@ Public Class main
         End Try
 
         Try
+            If _ftpService IsNot Nothing Then _ftpService.Stop()
+        Catch
+        End Try
+
+        Try
             If _tray IsNot Nothing Then
                 _tray.Visible = False
                 _tray.Dispose()
@@ -317,7 +424,7 @@ Public Class main
         End Try
     End Sub
 
-    ' ===== 로그 헬퍼 =====
+    ' ===== 일반 로그 =====
     Private Sub LogLine(msg As String)
         If TB_Logs.InvokeRequired Then
             TB_Logs.Invoke(New Action(Of String)(AddressOf LogLine), msg)
@@ -326,9 +433,24 @@ Public Class main
         End If
     End Sub
 
-    ' ===== CleanerService / SchedulerService 이벤트 핸들러 =====
+    ' ===== FTP 로그 =====
+    Private Sub LogFtpLine(msg As String)
+        If TB_FtpLogs Is Nothing Then Exit Sub
+
+        If TB_FtpLogs.InvokeRequired Then
+            TB_FtpLogs.Invoke(New Action(Of String)(AddressOf LogFtpLine), msg)
+        Else
+            TB_FtpLogs.AppendText("[" & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") & "] " & msg & Environment.NewLine)
+        End If
+    End Sub
+
+    ' ===== CleanerService / SchedulerService / FTP 이벤트 핸들러 =====
     Private Sub HandleServiceLog(msg As String)
         LogLine(msg)
+
+        If msg IsNot Nothing AndAlso msg.Contains("[FTP]") Then
+            LogFtpLine(msg)
+        End If
     End Sub
 
     Private Sub HandleCapacityUpdate(cfgName As String, totalPercent As Decimal, startPercent As Decimal)
@@ -473,5 +595,145 @@ Public Class main
     ' ===== 즉시 실행 (전체) =====
     Private Sub Btn_RunAllNow_Click(sender As Object, e As EventArgs) Handles Btn_RunAllNow.Click
         _scheduler.RunAllNow()
+    End Sub
+
+    ' ===== FTP 인증 UI =====
+    Private Sub UpdateFtpAuthUi()
+        Dim useAnonymous As Boolean = CB_FtpAllowAnonymous.Checked
+        TB_FtpUserName.Enabled = Not useAnonymous
+        TB_FtpPassword.Enabled = Not useAnonymous
+    End Sub
+
+    Private Sub CB_FtpAllowAnonymous_CheckedChanged(sender As Object, e As EventArgs) Handles CB_FtpAllowAnonymous.CheckedChanged
+        UpdateFtpAuthUi()
+    End Sub
+
+    ' ===== FTP 설정 생성 =====
+    Private Function BuildFtpSettingFromUi() As FtpHostSetting
+        Dim cfg As New FtpHostSetting()
+
+        cfg.Enabled = True
+        cfg.RootFolder = TB_FtpRootFolder.Text.Trim()
+        cfg.Port = CInt(NUD_FtpPort.Value)
+
+        cfg.BindAddress = "0.0.0.0"
+
+        cfg.PassiveAddress = ""
+        cfg.AllowAnonymous = CB_FtpAllowAnonymous.Checked
+        cfg.UserName = TB_FtpUserName.Text.Trim()
+        cfg.Password = TB_FtpPassword.Text
+        cfg.AutoCreateDirectories = True
+        cfg.AllowOverwrite = True
+        cfg.AutoStartOnProgramLaunch = CB_FtpAutoStart.Checked
+        cfg.LogToFile = False
+        cfg.CloneToTempOnCollision = False
+
+        If Not cfg.AllowAnonymous Then
+            If String.IsNullOrWhiteSpace(cfg.UserName) Then
+                Throw New ApplicationException("FTP 아이디를 입력하세요.")
+            End If
+
+            If String.IsNullOrWhiteSpace(cfg.Password) Then
+                Throw New ApplicationException("FTP 비밀번호를 입력하세요.")
+            End If
+        End If
+
+        Return cfg
+    End Function
+
+    Private Sub SaveFtpSettingFromUi()
+        _ftpSetting = BuildFtpSettingFromUi()
+
+        If _ftpRepo Is Nothing Then
+            _ftpRepo = New FtpSettingsRepository(Application.StartupPath)
+        End If
+
+        _ftpRepo.SaveSetting(_ftpSetting)
+        LogLine("[FTP] 설정 저장 완료")
+        LogFtpLine("[FTP] 설정 저장 완료")
+    End Sub
+
+    ' ===== FTP 루트 폴더 선택 =====
+    Private Sub Btn_FtpBrowseRoot_Click(sender As Object, e As EventArgs) Handles Btn_FtpBrowseRoot.Click
+        Try
+            Using dlg As New FolderBrowserDialog()
+                dlg.Description = "FTP 루트 폴더를 선택하세요."
+
+                If Directory.Exists(TB_FtpRootFolder.Text) Then
+                    dlg.SelectedPath = TB_FtpRootFolder.Text
+                End If
+
+                If dlg.ShowDialog() = DialogResult.OK Then
+                    TB_FtpRootFolder.Text = dlg.SelectedPath
+                    LogFtpLine("[FTP] 루트 폴더 선택: " & dlg.SelectedPath)
+                End If
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("폴더 선택 실패: " & ex.Message)
+            LogFtpLine("[FTP][ERROR] 루트 폴더 선택 실패: " & ex.Message)
+        End Try
+    End Sub
+
+    ' ===== FTP 시작 =====
+    Private Sub Btn_FtpStart_Click(sender As Object, e As EventArgs) Handles Btn_FtpStart.Click
+        Try
+            If _ftpService Is Nothing Then
+                _ftpService = New FtpServerService()
+                AddHandler _ftpService.OnLog, AddressOf HandleServiceLog
+            End If
+
+            If _ftpService.IsRunning Then
+                MessageBox.Show("FTP 서버가 이미 실행 중입니다.")
+                Exit Sub
+            End If
+
+            SaveFtpSettingFromUi()
+
+            If String.IsNullOrWhiteSpace(_ftpSetting.RootFolder) Then
+                MessageBox.Show("FTP 루트 폴더를 입력하세요.")
+                Exit Sub
+            End If
+
+            If Not Directory.Exists(_ftpSetting.RootFolder) Then
+                Directory.CreateDirectory(_ftpSetting.RootFolder)
+            End If
+
+            _ftpService.Start(_ftpSetting)
+
+            Lab_FtpStatus.Text = "FTP 상태: 실행 중"
+            Btn_FtpStart.Enabled = False
+            Btn_FtpStop.Enabled = True
+
+            LogLine("[FTP] 서버 시작 성공")
+            LogFtpLine("[FTP] 서버 시작 성공")
+
+        Catch ex As Exception
+            Lab_FtpStatus.Text = "FTP 상태: 시작 실패"
+            LogLine("[FTP][ERROR] 시작 실패: " & ex.Message)
+            LogFtpLine("[FTP][ERROR] 시작 실패: " & ex.Message)
+            MessageBox.Show("FTP 시작 실패: " & ex.Message)
+        End Try
+    End Sub
+
+    ' ===== FTP 중지 =====
+    Private Sub Btn_FtpStop_Click(sender As Object, e As EventArgs) Handles Btn_FtpStop.Click
+        Try
+            If _ftpService IsNot Nothing Then
+                _ftpService.Stop()
+            End If
+
+            Lab_FtpStatus.Text = "FTP 상태: 중지"
+            Btn_FtpStart.Enabled = True
+            Btn_FtpStop.Enabled = False
+
+            LogLine("[FTP] 서버 중지 완료")
+            LogFtpLine("[FTP] 서버 중지 완료")
+
+        Catch ex As Exception
+            LogLine("[FTP][ERROR] 중지 실패: " & ex.Message)
+            LogFtpLine("[FTP][ERROR] 중지 실패: " & ex.Message)
+            MessageBox.Show("FTP 중지 실패: " & ex.Message)
+        End Try
     End Sub
 End Class

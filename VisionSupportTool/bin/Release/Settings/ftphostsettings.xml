@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<FtpHostSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Enabled>true</Enabled>
+  <RootFolder>C:\test</RootFolder>
+  <Port>2121</Port>
+  <BindAddress>0.0.0.0</BindAddress>
+  <PassiveAddress />
+  <AllowAnonymous>false</AllowAnonymous>
+  <UserName>user</UserName>
+  <Password>1234</Password>
+  <AutoCreateDirectories>true</AutoCreateDirectories>
+  <AllowOverwrite>true</AllowOverwrite>
+  <AutoStartOnProgramLaunch>false</AutoStartOnProgramLaunch>
+  <LogToFile>false</LogToFile>
+  <CloneToTempOnCollision>false</CloneToTempOnCollision>
+</FtpHostSetting>
